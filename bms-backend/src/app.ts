@@ -63,7 +63,10 @@ app.use((err: Error & { status?: number; statusCode?: number; expose?: boolean }
     err.name === "MongooseServerSelectionError" ||
     /buffering timed out|topology is closed|server selection timed out|ECONNREFUSED|authentication failed/i.test(err.message);
   if (isDatabaseUnavailableError) {
-    return res.status(503).json({ message: "Database unavailable. Please try again shortly." });
+    const message = config.debugErrors
+      ? `Database unavailable: ${err.message}`
+      : "Database unavailable. Please try again shortly.";
+    return res.status(503).json({ message });
   }
 
   // http-errors sets statusCode/status + expose (true for 4xx, false for 5xx)
