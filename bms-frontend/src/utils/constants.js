@@ -23,7 +23,7 @@ import inox from "../assets/inox.avif";
 import pvr from "../assets/pvr.avif";
 import cinepolis from "../assets/cinepolis.avif";
 
-export const BACKEND_URL = import.meta.env.VITE_API_URL || "https://bookmyscreen-api.onrender.com";
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "https://bookmyscreen-api.onrender.com";
 export const SEAT_TYPES = [
   { label: 'Standard', price: 250, color: 'bg-slate-300' },
   { label: 'Premium', price: 350, color: 'bg-amber-400' },
