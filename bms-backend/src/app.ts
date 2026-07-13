@@ -63,9 +63,18 @@ app.use((err: Error & { status?: number; statusCode?: number; expose?: boolean }
     err.name === "MongooseServerSelectionError" ||
     /buffering timed out|topology is closed|server selection timed out|ECONNREFUSED|authentication failed/i.test(err.message);
   if (isDatabaseUnavailableError) {
-    const message = config.debugErrors
-      ? `Database unavailable: ${err.message}`
-      : "Database unavailable. Please try again shortly.";
+    let message = "Database unavailable. Please try again shortly.";
+    if (/authentication failed|auth failed|bad auth/i.test(err.message)) {
+      message = "Database authentication failed. Check MONGODB_URI username/password.";
+    } else if (/ENOTFOUND|EAI_AGAIN|getaddrinfo/i.test(err.message)) {
+      message = "Database host not reachable (DNS). Check MONGODB_URI host/cluster value.";
+    } else if (/ECONNREFUSED|server selection timed out|buffering timed out|topology is closed/i.test(err.message)) {
+      message = "Database network access failed. Allow Render IP in MongoDB Atlas Network Access.";
+    }
+
+    if (config.debugErrors) {
+      message = `Database unavailable: ${err.message}`;
+    }
     return res.status(503).json({ message });
   }
 
