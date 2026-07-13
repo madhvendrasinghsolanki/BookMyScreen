@@ -59,6 +59,13 @@ app.use((err: Error & { status?: number; statusCode?: number; expose?: boolean }
     return res.status(403).json({ message: "Origin not allowed" });
   }
 
+  const isDatabaseUnavailableError =
+    err.name === "MongooseServerSelectionError" ||
+    /buffering timed out|topology is closed|server selection timed out|ECONNREFUSED|authentication failed/i.test(err.message);
+  if (isDatabaseUnavailableError) {
+    return res.status(503).json({ message: "Database unavailable. Please try again shortly." });
+  }
+
   // http-errors sets statusCode/status + expose (true for 4xx, false for 5xx)
   // so client-facing validation/auth messages come through, while unexpected
   // 5xx errors still fall back to a generic message instead of leaking internals.
