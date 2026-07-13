@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../utils/constants'
 const client = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
+  timeout: 15000,
 })
 
 // Attach the JWT (stored by AuthContext) to every outgoing request.

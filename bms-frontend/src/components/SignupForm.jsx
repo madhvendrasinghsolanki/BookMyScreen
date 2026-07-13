@@ -5,6 +5,7 @@ import { api } from '../apis'
 export default function SignupForm() {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })
   const [message, setMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const navigate = useNavigate()
 
   const handleChange = (event) => {
@@ -14,6 +15,9 @@ export default function SignupForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (isSubmitting) {
+      return
+    }
     if (!form.name || !form.email || !form.password || !form.confirm) {
       setMessage('Please fill in all fields.')
       return
@@ -24,12 +28,24 @@ export default function SignupForm() {
     }
 
     try {
+      setIsSubmitting(true)
+      setMessage('')
       await api.register({ name: form.name, email: form.email, password: form.password })
       setMessage('Signup successful. Please log in.')
       navigate('/login')
     } catch (error) {
       const serverMessage = error?.response?.data?.message
-      setMessage(serverMessage || 'Signup failed. Please try again.')
+      const isTimeout = error?.code === 'ECONNABORTED'
+      const isNetworkError = !error?.response
+      if (isTimeout) {
+        setMessage('Request timed out. Please try again in a moment.')
+      } else if (isNetworkError) {
+        setMessage('Cannot reach server right now. Please try again shortly.')
+      } else {
+        setMessage(serverMessage || 'Signup failed. Please try again.')
+      }
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -85,8 +101,11 @@ export default function SignupForm() {
           />
         </label>
 
-        <button className="w-full rounded-full bg-gold px-5 py-3 text-sm font-semibold text-ink transition hover:bg-gold-soft">
-          Signup
+        <button
+          disabled={isSubmitting}
+          className="w-full rounded-full bg-gold px-5 py-3 text-sm font-semibold text-ink transition hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {isSubmitting ? 'Signing up...' : 'Signup'}
         </button>
 
         {message && <p className="text-sm text-mist">{message}</p>}
