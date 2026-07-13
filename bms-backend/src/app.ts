@@ -63,7 +63,7 @@ app.use((err: Error & { status?: number; statusCode?: number; expose?: boolean }
   // so client-facing validation/auth messages come through, while unexpected
   // 5xx errors still fall back to a generic message instead of leaking internals.
   const status = err.status || err.statusCode || 500;
-  const message = err.expose ? err.message : "Something went wrong";
+  const message = err.expose || config.debugErrors ? err.message : "Something went wrong";
   res.status(status).json({ message });
 });
 
