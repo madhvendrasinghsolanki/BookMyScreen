@@ -1,0 +1,148 @@
+export const movies = [
+  {
+    title: 'Maa',
+    genre: ['Fantasy', 'Horror', 'Mythological', 'Thriller'],
+    rating: 7.2,
+    certification: 'UA16+',
+    duration: '2h 15m',
+    releaseDate: '27 Jun 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594062/maa_emmfae.jpg',
+    description: 'A mother becomes Kali to end a demonic curse rooted in fear, blood, and betrayal.',
+  },
+  {
+    title: 'Kannappa',
+    genre: ['Action', 'Mythological'],
+    rating: 7.3,
+    certification: 'UA13+',
+    duration: '2h 30m',
+    releaseDate: '01 Aug 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/kannapp_tgw67d.jpg',
+    description: 'The tale of Kannappa, a devoted follower of Lord Shiva.',
+  },
+  {
+    title: 'Mission: Impossible - The Final Reckoning',
+    genre: ['Action', 'Thriller'],
+    rating: 8.6,
+    certification: 'UA13+',
+    duration: '2h 40m',
+    releaseDate: '18 Jul 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/impossible_zvp99a.webp',
+    description: 'Ethan Hunt returns for a high-stakes mission to save the world from impending doom.',
+  },
+  {
+    title: 'F1: The Movie',
+    genre: ['Sports', 'Documentary'],
+    rating: 9.5,
+    certification: 'UA16+',
+    duration: '2h',
+    releaseDate: '10 Jul 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594568/f1_ylcxtf.jpg',
+    description: 'An inside look at the world of Formula 1 racing and its iconic champions.',
+  },
+  {
+    title: 'From the World of John Wick: Ballerina',
+    genre: ['Action', 'Thriller'],
+    rating: 8.7,
+    certification: 'A',
+    duration: '2h 10m',
+    releaseDate: '25 Jul 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/john_wick_rbqyia.jpg',
+    description: 'A ballerina assassin seeks revenge in the dark world of the High Table.',
+  },
+  {
+    title: 'Metro In Dino',
+    genre: ['Romance', 'Drama'],
+    rating: 7.5,
+    certification: 'UA',
+    duration: '2h 10m',
+    releaseDate: '02 Sep 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594570/metro_ied1rz.jpg',
+    description: 'Multiple stories of love and life intertwine in the bustling metro city of Mumbai.',
+  },
+  {
+    title: 'How to Train Your Dragon: Return of Night Fury',
+    genre: ['Animation', 'Fantasy', 'Adventure'],
+    rating: 8.8,
+    certification: 'UA',
+    duration: '1h 45m',
+    releaseDate: '10 Sep 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594997/dragon_lrnokw.jpg',
+    description: 'Hiccup and Toothless return for a magical journey as a new Night Fury rises.',
+  },
+  {
+    title: 'Jurassic Park: Rebirth',
+    genre: ['Sci-Fi', 'Adventure', 'Action'],
+    rating: 9.0,
+    certification: 'UA16+',
+    duration: '2h 35m',
+    releaseDate: '01 Sep 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/jurassic_zlkixl.jpg',
+    description: 'Dinosaurs return in a world no longer in control — the race for survival begins anew.',
+  },
+  {
+    title: 'Sitaare Zameen Par',
+    genre: ['Drama', 'Family'],
+    rating: 8.5,
+    certification: 'UA',
+    duration: '2h 20m',
+    releaseDate: '12 Jul 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594567/sitaare_dfkgei.jpg',
+    description: 'A heartwarming story of a teacher who helps a dyslexic child discover the star within.',
+  },
+  {
+    title: 'M3GAN 2.0',
+    genre: ['Horror', 'Sci-Fi', 'Thriller'],
+    rating: 8.4,
+    certification: 'A',
+    duration: '1h 55m',
+    releaseDate: '22 Jul 2025',
+    posterUrl: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/megan_am9slm.webp',
+    description: 'M3GAN returns with upgraded AI and deadlier instincts in this spine-chilling tech horror sequel.',
+  },
+]
+
+export const theaters = [
+  {
+    name: 'Cinepolis',
+    location: 'High Street Mall',
+    image: 'https://images.unsplash.com/photo-1517602302552-471fe67acf66?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    name: 'INOX',
+    location: 'City Center',
+    image: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594569/inox_dliq1s.jpg',
+  },
+  {
+    name: 'Metro',
+    location: 'Downtown Plaza',
+    image: 'https://assets.cntraveller.in/photos/60ba1047002baf698cc66dea/master/w_1600%2Cc_limit/Main-Auditorium.jpg',
+  },
+  {
+    name: 'PVR',
+    location: 'Garden Avenue',
+    image: 'https://res.cloudinary.com/k5iutkbu/image/upload/v1783594485/pvr_nykofv.jpg',
+  },
+]
+
+export const trendingMovies = [
+  movies[2],
+  movies[3],
+  movies[6],
+  movies[7],
+]
+
+export const nowShowing = [
+  movies[0],
+  movies[1],
+  movies[2],
+  movies[3],
+  movies[4],
+  movies[5],
+]
+
+export const comingSoon = [
+  movies[6],
+  movies[7],
+  movies[8],
+  movies[9],
+]

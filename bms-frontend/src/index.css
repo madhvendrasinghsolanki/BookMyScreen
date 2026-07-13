@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* Class-based dark mode: ThemeContext toggles `.dark` on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-midnight: #0b0c10;
+  --color-midnight-2: #14161d;
+  --color-midnight-3: #1d2028;
+  --color-gold: #e7b750;
+  --color-gold-soft: #f3d48a;
+  --color-velvet: #a62639;
+  --color-velvet-soft: #c94a5c;
+  --color-paper: #f6f3ec;
+  --color-paper-2: #ece7db;
+  --color-ink: #17171c;
+  --color-mist: #93949e;
+
+  --font-display: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ticket: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+:root {
+  color-scheme: light;
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  text-rendering: optimizeLegibility;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+  background: var(--color-midnight);
+  color: #eef0f4;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-ink);
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-gold) 45%, transparent);
+  border-radius: 999px;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: riseIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes bulbPulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px 1px color-mix(in srgb, var(--color-gold) 70%, transparent);
+  }
+  50% {
+    opacity: 0.45;
+    box-shadow: 0 0 2px 0 transparent;
+  }
+}
+
+.marquee-bulb {
+  animation: bulbPulse 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .animate-fadeIn,
+  .marquee-bulb {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Signature: perforated ticket stub ---------- */
+/*
+  A dashed perforation line with two punched notches, evoking a torn
+  cinema ticket. Works on cards that sit directly on the page background:
+  the notches are colored to match the surrounding page background so
+  they read as cut-outs.
+*/
+.ticket-perforation {
+  position: relative;
+  border-top: 2px dashed color-mix(in srgb, var(--color-ink) 18%, transparent);
+}
+
+html.dark .ticket-perforation {
+  border-top-color: color-mix(in srgb, #fff 16%, transparent);
+}
+
+.ticket-perforation::before,
+.ticket-perforation::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-paper);
+}
+
+html.dark .ticket-perforation::before,
+html.dark .ticket-perforation::after {
+  background: var(--color-midnight-2);
+}
+
+.ticket-perforation::before {
+  left: -10px;
+}
+
+.ticket-perforation::after {
+  right: -10px;
+}
+
+.ticket-stub {
+  position: relative;
+  isolation: isolate;
+}
+
+.font-ticket {
+  font-family: var(--font-ticket);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Subtle film-grain overlay for the hero */
+.film-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: overlay;
+}
