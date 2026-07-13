@@ -26,7 +26,7 @@ import cinepolis from "../assets/cinepolis.avif";
 export const API_BASE_URL =
   import.meta.env.VITE_BACKEND_URL ||
   import.meta.env.VITE_API_URL ||
-  "http://localhost:9000";
+  (import.meta.env.DEV ? "http://localhost:9000" : "https://bookmyscreen-api.onrender.com");
 export const SEAT_TYPES = [
   { label: 'Standard', price: 250, color: 'bg-slate-300' },
   { label: 'Premium', price: 350, color: 'bg-amber-400' },

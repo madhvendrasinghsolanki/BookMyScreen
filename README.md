@@ -67,14 +67,21 @@ Create a `.env` file in both the frontend and backend.
 ```env
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
+ACCESS_TOKEN_SECRET=your_secret_key
+FRONTEND_URL=https://your-frontend-domain.vercel.app
 ```
 
 ### Frontend
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_BACKEND_URL=http://localhost:9000
 ```
+
+### Production deployment
+
+- Render backend: set `MONGODB_URI`, `ACCESS_TOKEN_SECRET`, `OMDB_API_KEY`, and `FRONTEND_URL`.
+- Vercel frontend: set `VITE_BACKEND_URL` to your deployed backend URL.
+- If `MONGODB_URI` is missing in production, the backend now stops with a clear error instead of falling back to localhost.
 
 ---
 

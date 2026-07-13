@@ -12,11 +12,19 @@ const required = (name: string, fallback?: string) => {
 };
 
 export const config = {
-  databaseUrl:
-    process.env.MONGODB_URI ||
-    process.env.DATABASE_URL ||
-    process.env.MONGO_CONNECTION_STRING ||
-    "mongodb://127.0.0.1:27017/bookmyscreen",
+  databaseUrl: (() => {
+    const databaseUrl =
+      process.env.MONGODB_URI ||
+      process.env.DATABASE_URL ||
+      process.env.MONGO_CONNECTION_STRING ||
+      "";
+
+    if (!databaseUrl && process.env.NODE_ENV === "production") {
+      throw new Error("Missing database connection string. Set MONGODB_URI in production.");
+    }
+
+    return databaseUrl || "mongodb://127.0.0.1:27017/bookmyscreen";
+  })(),
   port: Number(process.env.PORT || 9000),
   // No hardcoded fallback key — must be supplied via .env. Requests will
   // fail fast with a clear error instead of silently using a shared demo key.
