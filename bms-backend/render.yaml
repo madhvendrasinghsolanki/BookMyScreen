@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: bookmyscreen-api
+    runtime: node
+    plan: free
+    rootDir: bms-backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: ACCESS_TOKEN_SECRET
+        sync: false
+      - key: OMDB_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
