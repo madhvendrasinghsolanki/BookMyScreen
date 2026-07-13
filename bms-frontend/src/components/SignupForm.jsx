@@ -28,7 +28,8 @@ export default function SignupForm() {
       setMessage('Signup successful. Please log in.')
       navigate('/login')
     } catch (error) {
-      setMessage('Signup failed. Please try again.')
+      const serverMessage = error?.response?.data?.message
+      setMessage(serverMessage || 'Signup failed. Please try again.')
     }
   }
 

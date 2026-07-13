@@ -1,12 +1,11 @@
-import app from "./app";
-import { config } from "./config/config";
+import cors from "cors";
 
-const startServer = async () => {
-  const port = config.port;
-
-  app.listen(port, () => {
-    console.log(`Listening on port: ${port}`);
-  });
-};
-
-startServer();
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://book-my-screen-mu.vercel.app",
+    ],
+    credentials: true,
+  })
+);
