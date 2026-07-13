@@ -35,16 +35,15 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(routes);
 
-const connectDatabase = async () => {
+export const connectDatabase = async () => {
   try {
     await mongoose.connect(config.databaseUrl);
     console.log("MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection failed", error);
+    throw error;
   }
 };
-
-connectDatabase();
 
 app.get("/", (_, res) => {
   res.json({
