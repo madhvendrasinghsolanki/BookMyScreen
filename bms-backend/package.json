@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
-    "start": "node dist/server.ts",
+    "start": "node dist/server.js",
     "seed:theaters": "ts-node src/scripts/seed-theaters.ts",
     "seed:movies": "ts-node src/scripts/seed-movies.ts"
   },
