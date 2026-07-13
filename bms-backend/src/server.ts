@@ -1,16 +1,8 @@
-import express from "express";
-import cors from "cors";
+import app from "./app";
+import { config } from "./config/config";
 
-const app = express();
+const PORT = config.port || 9000;
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://book-my-screen-mu.vercel.app",
-    ],
-    credentials: true,
-  })
-);
-
-app.use(express.json());
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
