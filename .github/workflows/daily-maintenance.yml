@@ -1,0 +1,25 @@
+name: BookMyScreen Daily Maintenance
+
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  maintenance:
+    name: Check Project Health
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check project files
+        run: |
+          test -f README.md
+          test -f package.json
+          test -f bms-frontend/package.json
+          echo "BookMyScreen repository checks passed."
