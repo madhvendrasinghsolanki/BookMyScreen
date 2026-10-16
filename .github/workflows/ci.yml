@@ -22,9 +22,12 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: bms-frontend/package-lock.json
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
+        working-directory: bms-frontend
         run: npm ci
 
-      - name: Build project
+      - name: Build frontend
+        working-directory: bms-frontend
         run: npm run build
